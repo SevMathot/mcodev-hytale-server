@@ -47,6 +47,7 @@ cd your-folder
 ```bash
 docker build -t mcodev-hytale-server:main . --no-cache
 ```
+During the build process, you will be requested to authenticate with Hytale in order to download the server binaries. Just follow the instructions on the screen.
 
 ### 3. Start the server
 ```bash
@@ -168,11 +169,6 @@ Your world and configuration files remain intact.
 ## Troubleshooting
 
 ### I can’t connect to the server
-- Ensure you mapped **UDP 5520**, not TCP:
-  ```yaml
-  ports:
-    - "5520:5520/udp"
-  ```
 - Allow the port through your firewall:
   ```bash
   sudo ufw allow 5520/udp
