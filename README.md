@@ -39,8 +39,8 @@ Make sure the following is installed:
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/your/repo.git
-cd your-repo
+git clone https://github.com/SevMathot/mcodev-hytale-server
+cd your-folder
 ```
 
 ### 2. Build the Docker image
