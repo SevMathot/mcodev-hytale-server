@@ -3,8 +3,7 @@
 FROM debian:latest
 
 ## Debian Linux post setup....
-
-# Update and upgrade linux:
+# Update and upgrade Linux:
 RUN apt-get update && apt-get upgrade -y
 
 # Set up locales
@@ -16,11 +15,7 @@ ENV LANG en_US.utf8
 RUN apt-get update && apt-get install -qq -y wget curl unzip apt-transport-https gpg bash jq
 
 
-
 ## HyTale Server
-
-# HyTale System Specifications:
-#      At least 4GB, JRE 25 (Adoptium's Temurin 25)
 # https://support.hytale.com/hc/en-us/articles/45326769420827-Hytale-Server-Manual#server-setup
 # https://hytale.game/en/create-server-hytale-guide/
 
@@ -30,6 +25,8 @@ RUN wget -qO - https://packages.adoptium.net/artifactory/api/gpg/key/public | gp
 RUN echo "deb https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" | tee /etc/apt/sources.list.d/adoptium.list
 RUN apt-get update && apt-get install -qq -y temurin-25-jdk
 
+
+
 # Hytale Server Preparations:
 RUN mkdir /app
 WORKDIR /app
@@ -37,13 +34,18 @@ RUN wget https://downloader.hytale.com/hytale-downloader.zip
 RUN unzip hytale-downloader.zip
 RUN rm hytale-downloader.zip
 RUN chmod +x hytale-downloader-linux-amd64
+
+# The following command may require authentication from Hytale. Follow the instructions on the screen.
 RUN ./hytale-downloader-linux-amd64
+
 RUN unzip 20*.zip
 RUN chmod +x start.sh
 COPY launch.sh /app/launch.sh
 COPY tokens.sh /app/tokens.sh
 RUN chmod +x launch.sh
 RUN chmod +x tokens.sh
+
+
 
 # Cleanup...
 RUN rm *.exe
@@ -52,7 +54,7 @@ RUN rm *.bat
 # Hytale server port
 EXPOSE 5520
 
-# Setup container's entry point to the HyTale start script:
+# Setup container's entry point to the launch script:
 ENTRYPOINT ["/app/launch.sh"]
 
 
