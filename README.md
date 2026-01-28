@@ -1,11 +1,3 @@
-After docker-compose -up, when you see this:
-
-mcodev_hytale_server  | [2026/01/28 11:23:42   INFO]                   [HytaleServer] ===============================================================================================
-mcodev_hytale_server  | [2026/01/28 11:23:42   INFO]                   [HytaleServer]          Hytale Server Booted! [Multiplayer, Fresh Universe] took 6sec 705ms 817us 736ns
-mcodev_hytale_server  | [2026/01/28 11:23:42   INFO]                   [HytaleServer] ===============================================================================================
-mcodev_hytale_server  | [2026/01/28 11:23:42   WARN]                   [HytaleServer] No server tokens configured. Use /auth login to authenticate.
-
-Login with  /auth login
 # mCoDev Hytale Server on Docker
 
 ## Overview
