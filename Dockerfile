@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -qq -y wget curl unzip apt-transport-https
 # https://support.hytale.com/hc/en-us/articles/45326769420827-Hytale-Server-Manual#server-setup
 # https://hytale.game/en/create-server-hytale-guide/
 
-# Java JRE 65 Adoptium
+# Java JRE 25 Adoptium
 # https://adoptium.net/en-GB/installation/linux
 RUN wget -qO - https://packages.adoptium.net/artifactory/api/gpg/key/public | gpg --dearmor | tee /etc/apt/trusted.gpg.d/adoptium.gpg > /dev/null
 RUN echo "deb https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" | tee /etc/apt/sources.list.d/adoptium.list
