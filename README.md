@@ -58,10 +58,17 @@ On first launch, the server will prompt you to authenticate using the OAuth devi
 You will see something like:
 
 ```
-Visit this URL to authenticate your Hytale server:
-https://oauth.accounts.hytale.com/device
-Enter this code:
-ABCD-EFGH
+mcodev_hytale_server  | ==============================================
+mcodev_hytale_server  |    HYTALE SERVER AUTHENTICATION REQUIRED
+mcodev_hytale_server  | ==============================================
+mcodev_hytale_server  | Visit this URL in a browser:
+mcodev_hytale_server  |   https://oauth.accounts.hytale.com/oauth2/device/verify?user_code=ABC-DEF
+mcodev_hytale_server  |
+mcodev_hytale_server  | Enter this code:
+mcodev_hytale_server  |   ABC-DEF
+mcodev_hytale_server  | ==============================================
+mcodev_hytale_server  |
+mcodev_hytale_server  | Waiting for authorization...
 ```
 
 Open the URL in your browser, enter the code, and approve the login.
