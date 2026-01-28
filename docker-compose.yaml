@@ -1,0 +1,17 @@
+services:
+  hytale-server:
+    image: mcodev-hytale-server:main
+    container_name: mcodev_hytale_server
+    restart: unless-stopped
+    ports:
+      - "5520:5520/udp"
+    volumes:
+      - ./data/bans.json:/app/Server/bans.json:rw
+      - ./data/config.json:/app/Server/config.json:rw
+      - ./data/permissions.json:/app/Server/permissions.json:rw
+      - ./data/whitelist.json:/app/Server/whitelist.json:rw
+      - ./data/backups:/app/Server/backups:rw
+      - ./data/logs:/app/Server/logs:rw
+      - ./data/mods:/app/Server/mods:rw
+      - ./data/universe:/app/Server/universe:rw
+
