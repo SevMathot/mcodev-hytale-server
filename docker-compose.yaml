@@ -1,3 +1,15 @@
+# ====   Copyright 2026, mCoDev Systems, All rights reserved.   ====
+# =  Purpose:    docker-compose file,   describes the container.
+# =  Reference:  
+# =  Author:     Steve (Sev) Mathot, mCoDev Systems. (www.mcodev.net)
+# =  License:    mCoDev Systems General Public License (MIT)
+# =  Usage:      docker-compose up [-d]
+# =  Output:     
+# ==================================================================
+
+# Before running docker-compose, make sure the folder data exists + the JSON files in that folder.
+# While the container is starting, check the logs. Hytale Server will require authentication!
+
 services:
   hytale-server:
     image: mcodev-hytale-server:main
