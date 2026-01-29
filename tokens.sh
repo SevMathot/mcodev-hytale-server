@@ -4,7 +4,7 @@ set -euo pipefail
 # ====   Copyright 2026, mCoDev Systems, All rights reserved.   ====
 # =  Purpose:    Fetch Hytale OAuth sessions tokens for running a dedicated server
 # =  Reference:  https://support.hytale.com/hc/en-us/articles/45328341414043
-# =  Author:     Steve (Sev) Mathot, mCoDev Systems. (www.mcodev.net
+# =  Author:     Steve (Sev) Mathot, mCoDev Systems. (www.mcodev.net)
 # =  License:    mCoDev Systems General Public License (MIT)
 # =  Usage:      source ./tokens.sh     or     . ./tokens.sh
 # =  Output:     Exported system environment variables: 
