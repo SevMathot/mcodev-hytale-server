@@ -1,11 +1,19 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# ============================================
-# Hytale OAuth2 Device Code Authentication, by mCoDev Systems.
-# Official API Spec:
-# https://support.hytale.com/hc/en-us/articles/45328341414043
-# ============================================
+# ====   Copyright 2026, mCoDev Systems, All rights reserved.   ====
+# =  Purpose:    Fetch Hytale OAuth sessions tokens for running a dedicated server
+# =  Reference:  https://support.hytale.com/hc/en-us/articles/45328341414043
+# =  Author:     Steve (Sev) Mathot, mCoDev Systems. (www.mcodev.net
+# =  License:    mCoDev Systems General Public License (MIT)
+# =  Usage:      source ./tokens.sh     or     . ./tokens.sh
+# =  Output:     Exported system environment variables: 
+#                     - HYTALE_SERVER_SESSION_TOKEN
+#                     - HYTALE_SERVER_IDENTITY_TOKEN
+#                     - HYTALE_SERVER_REFRESH_TOKEN
+# ==================================================================
+
+
 
 CLIENT_ID="hytale-server"
 SCOPE="openid offline auth:server"
@@ -74,8 +82,7 @@ echo "Authorization successful."
 # ============================================
 echo "Fetching available profiles..."
 
-PROFILE_RESPONSE=$(curl -s -X GET "$PROFILES_URL" \
-  -H "Authorization: Bearer $ACCESS_TOKEN")
+PROFILE_RESPONSE=$(curl -s -X GET "$PROFILES_URL" -H "Authorization: Bearer $ACCESS_TOKEN")
 
 PROFILE_UUID=$(echo "$PROFILE_RESPONSE" | jq -r '.profiles[0].uuid')
 
@@ -98,25 +105,22 @@ SESSION_RESPONSE=$(curl -s -X POST "$SESSION_URL" \
 
 SESSION_TOKEN=$(echo "$SESSION_RESPONSE" | jq -r '.sessionToken')
 IDENTITY_TOKEN=$(echo "$SESSION_RESPONSE" | jq -r '.identityToken')
+REFRESH_TOKEN=$(echo "$TOKEN_RESPONSE" | jq -r '.refresh_token')
 
-if [[ -z "$SESSION_TOKEN" || -z "$IDENTITY_TOKEN" ]]; then
+if [[ -z "$SESSION_TOKEN" || -z "$IDENTITY_TOKEN" || -z "$REFRESH_TOKEN" ]]; then
   echo "Failed to create game session:"
   echo "$SESSION_RESPONSE"
   exit 1
 fi
-
-export HYTALE_SERVER_SESSION_TOKEN="$SESSION_TOKEN"
-export HYTALE_SERVER_IDENTITY_TOKEN="$IDENTITY_TOKEN"
-
-REFRESH_TOKEN=$(echo "$TOKEN_RESPONSE" | jq -r '.refresh_token')
-
-if [[ -z "$REFRESH_TOKEN" || "$REFRESH_TOKEN" == "null" ]]; then
+if [[ "$REFRESH_TOKEN" == "null" ]]; then
   echo "No refresh token received!"
   exit 1
 fi
 
-export HYTALE_SERVER_REFRESH_TOKEN="$REFRESH_TOKEN"
 
+export HYTALE_SERVER_SESSION_TOKEN="$SESSION_TOKEN"
+export HYTALE_SERVER_IDENTITY_TOKEN="$IDENTITY_TOKEN"
+export HYTALE_SERVER_REFRESH_TOKEN="$REFRESH_TOKEN"
 
 echo ""
 echo "=============================================="
