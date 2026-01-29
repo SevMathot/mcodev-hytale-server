@@ -1,3 +1,13 @@
+# ====   Copyright 2026, mCoDev Systems, All rights reserved.   ====
+# =  Purpose:    Dockerfile. The creates a docker image for running a Hytale Dedicated Server, using the specifications from Hytale.
+# =  Reference:  https://support.hytale.com/hc/en-us/articles/45326769420827-Hytale-Server-Manual#server-setup
+# =  Author:     Steve (Sev) Mathot, mCoDev Systems. (www.mcodev.net)
+# =  License:    mCoDev Systems General Public License (MIT)
+# =  Usage:      docker build -t mcodev-hytale-server:main . --no-cache
+# =  Output:     Docker image
+# ==================================================================
+
+
 # Using debian amd64 latest build
 # https://hub.docker.com/_/debian
 FROM debian:latest
@@ -56,7 +66,3 @@ EXPOSE 5520
 
 # Setup container's entry point to the launch script:
 ENTRYPOINT ["/app/launch.sh"]
-
-
-
-
